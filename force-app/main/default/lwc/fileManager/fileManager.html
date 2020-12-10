@@ -1,0 +1,88 @@
+<template>
+    
+        <lightning-card
+            title={header}
+            icon-name={iconName}>
+
+            <div style="padding: 1rem;">
+
+                <div class="slds-grid slds-gutters">
+
+                    <div class="slds-col">
+                        <lightning-combobox
+                            label="Filter by Category"
+                            name="Category__c"
+                            onchange={filterData}
+                            options={filterCategories}
+                        ></lightning-combobox>
+                    </div>
+                
+                    <div class="slds-col">
+                        <lightning-input
+                            label="Filter by Text"
+                            placeholder="Additionally filter on any data cell, case insensitive..."
+                            name="Any"
+                            onchange={filterData}
+                        ></lightning-input>
+                    </div>
+                </div>
+                
+                <br />
+
+                <template if:true={categories.length}>
+                    <c-extenda-table
+                        key-field="Id"
+                        columns={columns}
+                        data={viewable_files}
+                        sorted-by={sortedBy}
+                        default-sort-direction={sortedDirection}
+                        sorted-direction={sortedDirection}
+                        hide-checkbox-column="true"
+                        onpicklist={updateCategory}
+                        onsort={updateColumnSorting}
+                        onsave={handleSave}
+                        onrowaction={managerChanged}>
+                    </c-extenda-table>
+                    <!-- 
+                        show-row-number-column="false"
+                        suppress-bottom-bar="true"
+                        onheaderaction={handleHeaderAction}
+                    -->
+                </template>
+            </div>
+
+            <span slot="footer">
+
+                <lightning-file-upload
+                    multiple
+                    record-id={recordId}
+                    onuploadfinished={handleUploadFinished}>
+                </lightning-file-upload>
+
+                <c-modal
+                    variant="large"
+                    disable-footer="true"
+                    header="Choose Categories for Files">
+                    
+                    <span slot="content">
+
+                        <c-carousel-categories
+                            files={files}
+                            onsave={handleCategoryFinished}
+                            categories={categories}
+                        ></c-carousel-categories>
+
+                    </span>
+
+                </c-modal>
+            </span>
+        </lightning-card>
+
+        <!--
+        <br/>
+        <lightning-button
+            label="Debug"
+            onclick={debug}
+        ></lightning-button> 
+        -->
+</template>

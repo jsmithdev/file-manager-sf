@@ -1,0 +1,19 @@
+div, selection, template {
+	font-size: .812rem;
+}
+.shower {
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	font-style: inherit;
+}
+
+button, lightning-button {
+	margin: .8rem;
+}
+
+.footer__center {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}

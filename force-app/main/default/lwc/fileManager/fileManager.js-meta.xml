@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="urn:metadata.tooling.soap.sforce.com" fqn="LWC_NAME">
+    <apiVersion>50.0</apiVersion>
+    <isExposed>true</isExposed>
+  
+    <masterLabel>File Manager</masterLabel>
+  
+    <description>Create, edit and delete files with categories, sorting, etc</description>
+
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+
+    <targetConfigs> 
+
+        <targetConfig targets="lightning__RecordPage">
+            <property 
+                label="Header"
+                name="header" 
+                type="String" 
+                default="File Manager"
+            ></property>
+            <property 
+                label="Icon Name"
+                description="SLDS icon name eg type:icon"
+                name="iconName" 
+                type="String" 
+                default="action:manage_perm_sets"
+            ></property>
+            <property 
+                label="Fields"
+                required="true"
+                description="comma separated field API names"
+                name="fields" 
+                type="String" 
+                default="Title,Category__c,Owner,LastModifiedDate"
+            ></property>
+        </targetConfig>
+      
+        <targetConfig targets="lightning__AppPage">
+            <property 
+                label="Header"
+                name="header" 
+                type="String" 
+                default="File Manager"
+            ></property>
+            <property 
+                label="Icon Name"
+                description="SLDS icon name eg type:icon"
+                name="iconName" 
+                type="String" 
+                default="action:manage_perm_sets"
+            ></property>
+            <property 
+                label="Fields"
+                required="true"
+                description="comma separated field API names"
+                name="fields" 
+                type="String" 
+                default="Title,Category__c,LastModifiedDate"
+            ></property>
+        </targetConfig>
+      
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="recordId" type="String" ></property>
+            <property 
+                label="Header"
+                name="header" 
+                type="String" 
+                default="File Manager"
+            ></property>
+            <property 
+                label="Icon Name"
+                description="SLDS icon name eg type:icon"
+                name="iconName" 
+                type="String" 
+                default="action:manage_perm_sets"
+            ></property>
+            <property 
+                label="Fields"
+                required="true"
+                description="comma separated field API names"
+                name="fields" 
+                type="String" 
+                default="Title,Category__c,LastModifiedDate"
+            ></property>
+        </targetConfig>
+
+    </targetConfigs> 
+
+</LightningComponentBundle>
