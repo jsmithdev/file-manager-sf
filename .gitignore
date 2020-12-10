@@ -5,3 +5,4 @@ sfdx-project.json
 config
 scripts
 .env
+deploy
