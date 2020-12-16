@@ -1,0 +1,16 @@
+.active {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+.title {
+    font-size: 1rem;
+}
+footer {
+    align-self: center;
+    margin-top: 1.25rem;
+}
+.count {
+    margin: auto .5rem;
+}
