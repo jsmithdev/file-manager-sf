@@ -1,0 +1,33 @@
+<template>
+    <div class="slds-carousel">
+        <div class="slds-carousel__stage">
+            
+            <div class="slds-carousel__panels" style="transform:translateX(-0%)" lwc:dom="manual">
+                
+
+
+            </div>
+            
+            <footer>
+                <lightning-button
+                    
+                    label="Previous"
+                    icon-position="left"
+                    icon-name="utility:chevronleft"
+                    onclick={previous}
+                ></lightning-button>
+
+                <span class="count">{count}</span>
+                
+                <lightning-button
+                    label={button_label}
+                    variant="brand"
+                    icon-position="right"
+                    icon-name="utility:chevronright"
+                    onclick={next}
+                ></lightning-button>
+            </footer>
+
+        </div>
+      </div>
+</template>

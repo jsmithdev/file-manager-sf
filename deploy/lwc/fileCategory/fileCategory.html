@@ -1,0 +1,15 @@
+<template>
+    <div class="card">
+        <p class="title">{file.name}</p>
+        <span>
+            <lightning-combobox
+                name="categories"
+                label="What category would this file belong to?"
+                placeholder="Pick a Category"
+                options={categories}
+                onchange={handleChange} >
+            </lightning-combobox>
+        </span>
+        <hr />
+    </div>
+</template>
