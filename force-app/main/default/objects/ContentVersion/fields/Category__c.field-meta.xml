@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>--None--</fullName>
+                <default>true</default>
+                <label>&gt;--None--</label>
+            </value>
+            <value>
+                <fullName>Standard</fullName>
+                <default>false</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Customer Quotes, PO&apos;s, Contracts, &amp; Other Commercial Documents</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Customer Quotes, PO&apos;s, Contracts, &amp; Other Commercial Documents</label>
+            </value>
+            <value>
+                <fullName>Emissions</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Emissions</label>
+            </value>
+            <value>
+                <fullName>General</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>General</label>
+            </value>
+            <value>
+                <fullName>Sales Engineer Cost Info</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sales Engineer Cost Info</label>
+            </value>
+            <value>
+                <fullName>Service Dept - IO&apos;s, Correspondences, Quotes</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Service Dept - IO&apos;s, Correspondences, Quotes</label>
+            </value>
+            <value>
+                <fullName>Specs, Drawings, Tech Info</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Specs, Drawings, Tech Info</label>
+            </value>
+            <value>
+                <fullName>Submittals</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Submittals</label>
+            </value>
+            <value>
+                <fullName>Vendor - General</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Vendor - General</label>
+            </value>
+            <value>
+                <fullName>Vendor - Packaging</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Vendor - Packaging</label>
+            </value>
+            <value>
+                <fullName>Vendor - SG &amp; TS</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Vendor - SG &amp; TS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
