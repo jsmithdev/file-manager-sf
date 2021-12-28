@@ -84,7 +84,6 @@ export default class FileManager extends LightningElement {
 
     connectedCallback(){
         this.refreshExistingFiles()
-
     }
 
     async refreshExistingFiles(){
