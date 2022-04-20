@@ -23,12 +23,15 @@ import updateVersions from '@salesforce/apex/FileManager.updateVersions'
 
 export default class FileManager extends LightningElement {
 
+    @api isUploadOnly = false;
+    @api subheader = '';
+
     all_files = []
 
-    @api header
-    @api iconName
-    @api fields
-    @api recordId = '0035C00000Ov4z1QAB'
+    @api header = ''
+    @api iconName = 'action:manage_perm_sets'
+    @api fields = []
+    @api recordId = ''
 
     @track files = []
     @track sortedBy = 'LastModifiedDate'
@@ -101,12 +104,12 @@ export default class FileManager extends LightningElement {
 
         this.files = files
 
-        this.template.querySelector('c-modal').open()
+        this.template.querySelector('c-modal')?.open()
     }
 
     async handleCategoryFinished(event){
 
-        this.template.querySelector('c-modal').close()
+        this.template.querySelector('c-modal')?.close()
         
         const { detail } = event
 
