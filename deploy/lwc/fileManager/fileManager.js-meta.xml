@@ -24,6 +24,12 @@
                 default="File Manager"
             ></property>
             <property 
+                label="Sub-header"
+                name="subheader" 
+                type="String" 
+                default=""
+            ></property>
+            <property 
                 label="Icon Name"
                 description="SLDS icon name eg type:icon"
                 name="iconName" 
@@ -37,6 +43,14 @@
                 name="fields" 
                 type="String" 
                 default="Title,Category__c,Owner,LastModifiedDate"
+            ></property>
+            <property 
+                label="Is Upload Only"
+                required="true"
+                description="Show only the upload section"
+                name="isUploadOnly" 
+                type="Boolean"
+                default="false"
             ></property>
         </targetConfig>
       
@@ -86,6 +100,14 @@
                 name="fields" 
                 type="String" 
                 default="Title,Category__c,LastModifiedDate"
+            ></property>
+            <property 
+                label="Is Upload Only"
+                required="true"
+                description="Show only the upload section"
+                name="isUploadOnly" 
+                type="Boolean"
+                default="false"
             ></property>
         </targetConfig>
 
