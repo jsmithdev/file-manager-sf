@@ -1,0 +1,72 @@
+<template>
+
+    <lightning-card title={header} icon-name={iconName}>
+
+        <template if:true={subheader}>
+            <div style="padding: 1rem;">
+                <p>{subheader}</p>
+            </div>
+        </template>
+
+        <template if:false={isUploadOnly}>
+
+            <div slot="actions">
+                <lightning-button label="Refresh" onclick={refreshExistingFiles}></lightning-button>
+            </div>
+
+            <div style="padding: 1rem;">
+
+                <div class="slds-grid slds-gutters">
+
+                    <div class="slds-col">
+                        <lightning-input label="Filter by Text"
+                            placeholder="Additionally filter on any data cell, case insensitive..." name="Any"
+                            onchange={filterData}></lightning-input>
+                    </div>
+                </div>
+
+                <br />
+
+                <lightning-datatable
+                    key-field="Key" 
+                    suppress-bottom-bar="true"
+                    hide-checkbox-column="true"
+
+                    columns={columns}
+                    data={viewable_files} 
+                    sorted-by={sortedBy}
+                    default-sort-direction={sortedDirection}
+                    sorted-direction={sortedDirection}
+                    onsort={updateColumnSorting}
+                    onrowaction={managerChanged}>
+                </lightning-datatable>
+                <!-- 
+                    onsave={handleSave}
+                    show-row-number-column="false"
+                    suppress-bottom-bar="true"
+                    onheaderaction={handleHeaderAction}
+                -->
+            </div>
+        </template>
+
+        <span slot="footer">
+            <lightning-input
+                multiple
+                type="file"
+                onchange={handleUpload}
+                disabled={isUploadOnly}
+            ></lightning-input>
+            <!-- accept={acceptedFileTypes} -->
+        </span>
+    </lightning-card>
+
+    <c-file-manager-preview></c-file-manager-preview>
+
+    <!--
+        <br/>
+        <lightning-button
+            label="Debug"
+            onclick={debug}
+        ></lightning-button> 
+        -->
+</template>
