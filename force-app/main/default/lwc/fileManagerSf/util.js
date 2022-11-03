@@ -1,51 +1,107 @@
 /**
- * return pre mapped row
- * @param {Object} file 
+ * return array of pre mapped rows
+ * @param {Array} files 
  */
-export function fieldMap(file) {
+export function fieldMap(files){
 
-    const Title = file.Key.substring(file.Key.lastIndexOf('/')+1, file.Key.lastIndexOf('.'))
-    const Type = file.Key.substring(file.Key.lastIndexOf('.')+1, file.Key.length).toUpperCase()
+    return files.map(file => {
 
-    return {
-        ...file,
-        Title,
-        Type,
-    }
+        const object = Object.assign({}, file)
+
+        object.owner = object.Owner.Name
+        object.detail_link = `/lightning/r/ContentDocument/${file.ContentDocumentId}/view`
+        object.download_link = `/sfc/servlet.shepherd/version/download/${file.Id}`
+
+        object.modDate = new Date(object.LastModifiedDate).toLocaleString('en-US', { 
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric', 
+            minute: 'numeric', 
+            hour12: true 
+        })
+
+        //console.log(JSON.parse(JSON.stringify({ object })))
+        
+        return object
+    })
 }
 
 /**
- * return columns for datatable
+ * return columns as requested by options
+ * @param {Object} options 
+ *   categories: Array
+ *   fields: String comma separated
  */
-export function getColumns(){
+export function getColumns(options){
 
     //console.log('column options')
     //console.log(options)
 
-    return [
+    const {
+        categories,
+    } = options;
+
+    const fields = [
+        ...options.fields.replace(/ /g, '').split(','),
+        'Actions',
+    ]
     
-        // 'Title': 
-        {
+    const columns = fields.reduce((cols, field) => [
+        ...cols, 
+        columnMap(categories)[field]
+    ], []);
+    
+    //console.log('columns')
+    //console.log(columns)
+
+    return columns
+}
+
+function columnMap(categories){
+
+    return {
+    
+        'Title': {
             label: 'Title',
             fieldName: 'Title',
             type: 'text',
             sortable: true,
+            editable: true,
             hideDefaultActions: true,
         },
-    
-        //'Type': 
-        {
-            label: 'Type',
-            fieldName: 'Type',
+        
+
+        'Category__c': {
+            label: 'Category', 
+            fieldName: 'Category__c', 
+            type: 'picklist', 
+            sortable: true,
+            hideDefaultActions: true,
+            typeAttributes: {
+                placeholder: 'Choose Category', 
+                options: categories, 
+                value: { 
+                    fieldName: 'Category__c'
+                }, 
+                context: { 
+                    fieldName: 'Id' 
+                }
+            }
+        },
+
+        'Owner': {
+            label: 'Owner',
+            fieldName: 'owner',
             type: 'text',
             sortable: true,
+            editable: false,
             hideDefaultActions: true,
         },
 
-        //'LastModifiedDate': 
-        {
-            label: 'Last Modified',
-            fieldName: 'LastModified',
+        'LastModifiedDate': {
+            label: 'Modified',
+            fieldName: 'modDate',
             type: 'date',
             sortable: true,
             hideDefaultActions: true,
@@ -58,18 +114,16 @@ export function getColumns(){
             },
         },
         
-        //'Actions': 
-        {
+        'Actions': {
             //label: 'Actions',
             type: 'action',
             typeAttributes: { 
                 fieldName: "rowActions",
                 rowActions: [
                     {
-                        label: 'Preview',  //Required. The label that's displayed for the action
-                        name: 'preview',   //Required. The name of the action, which identifies the selected action
+                        label: 'Details',  //Required. The label that's displayed for the action
+                        name: 'detail',   //Required. The name of the action, which identifies the selected action
                         iconName: 'utility:list', //The name of the icon to be displayed to the right of the action item.
-                        iconPosition: 'left',
                     },
                     {
                         label: 'Download',  //Required. The label that's displayed for the action
@@ -77,17 +131,17 @@ export function getColumns(){
                         iconName: 'utility:download', //The name of the icon to be displayed to the right of the action item.
                         iconPosition: 'left',
                     },
-                    //{
-                    //    label: 'Delete',  //Required. The label that's displayed for the action
-                    //    name: 'delete',   //Required. The name of the action, which identifies the selected action
-                    //    iconName: 'utility:delete', //The name of the icon to be displayed to the right of the action item.
-                    //    iconPosition: 'left',
-                    //},
+                    {
+                        label: 'Delete',  //Required. The label that's displayed for the action
+                        name: 'delete',   //Required. The name of the action, which identifies the selected action
+                        iconName: 'utility:delete', //The name of the icon to be displayed to the right of the action item.
+                        iconPosition: 'left',
+                    },
                 ], 
                 menuAlignment: 'auto',
             } 
         },
-    ];
+    }
 }
 
 /**
@@ -101,8 +155,8 @@ export function sortData(records, fieldName, sortDirection) {
 
     //console.log(fieldName)
 
-    const text_fields = ['Title', 'Type']
-    const date_fields = ['LastModified']
+    const text_fields = ['Category__c', 'Title', 'owner']
+    const date_fields = ['modDate']
 
     if(text_fields.includes(fieldName)) {
 
@@ -143,7 +197,7 @@ export function sortData(records, fieldName, sortDirection) {
 /**
  * Filter records via given parameters
  * @param {Array} records array of records to filter ([{},{}])
- * @param {Array} props array of properties to filter on [Title,Type]
+ * @param {Array} props array of properties to filter on [Title,Category__c]
  * @param {String} value value to filter by
  * @returns {Array} filtered array
  */

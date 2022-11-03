@@ -1,0 +1,50 @@
+<template>
+	<template if:true={active}>
+
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading" aria-modal="true"
+			aria-describedby="modal-content" class="slds-modal slds-fade-in-open slds-modal_large">
+			<div class="slds-modal__container">
+				<header class="slds-modal__header">
+					<button onclick={close} class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+
+						<lightning-icon icon-name="utility:close" alternative-text="close"></lightning-icon>
+
+						<span class="slds-assistive-text">Close</span>
+					</button>
+					<h2 class="slds-text-heading_medium slds-hyphenate">{selected.name}</h2>
+				</header>
+
+				<p class="slds-p-horizontal_small" style="background: #EEE; max-height: 75vh; text-align: center;">
+
+					<template if:true={doc}>
+						
+						<iframe src={fileUrl} class="document" ></iframe>
+						
+					</template>
+					
+					<template if:true={video}>
+
+						<video controls src={fileUrl} class="video" ></video>
+						
+					</template>
+					
+					<template if:true={image}>
+
+						<img src={fileUrl} class="image" ></img>
+						
+					</template>
+
+				</p>
+
+				<div class="slds-modal__content slds-p-around_medium">
+
+					<button onclick={view} class="slds-button slds-button_brand">Open</button>
+					<button onclick={remove} class="slds-button slds-button_destructive">Delete</button>
+					<button onclick={close} class="slds-button slds-button_neutral">Close</button>
+				</div>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+
+	</template>
+</template>

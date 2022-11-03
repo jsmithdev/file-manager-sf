@@ -1,0 +1,21 @@
+.center{
+    text-align: center;
+}
+.slds-modal__container {
+    max-width: fit-content;
+}
+.video {
+    max-height: 75vh;
+    width: inherit;
+	height: auto;
+    max-width: -webkit-fill-available;
+}
+iframe {
+    width: 100vw;
+    height: 100vw;
+}
+img {
+	max-height: 75vh;
+    width: auto;
+	height: auto;
+}

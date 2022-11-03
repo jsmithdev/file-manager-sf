@@ -16,19 +16,30 @@
 
     <targetConfigs> 
 
-        <targetConfig targets="lightning__RecordPage">
+        <targetConfig targets="lightning__RecordPage, lightning__AppPage, lightningCommunity__Default">
+
+            <property 
+                label="Storage Provider" 
+                name="provider" 
+                type="String" 
+                datasource="Salesforce,AWS-S3" 
+                default="Salesforce"
+            ></property>
+
             <property 
                 label="Header"
                 name="header" 
                 type="String" 
                 default="File Manager"
             ></property>
+
             <property 
                 label="Sub-header"
                 name="subheader" 
                 type="String" 
                 default=""
             ></property>
+
             <property 
                 label="Icon Name"
                 description="SLDS icon name eg type:icon"
@@ -36,6 +47,7 @@
                 type="String" 
                 default="action:manage_perm_sets"
             ></property>
+
             <property 
                 label="Fields"
                 required="true"
@@ -44,6 +56,7 @@
                 type="String" 
                 default="Title,Category__c,Owner,LastModifiedDate"
             ></property>
+            
             <property 
                 label="Is Upload Only"
                 required="true"
@@ -52,63 +65,15 @@
                 type="Boolean"
                 default="false"
             ></property>
-        </targetConfig>
-      
-        <targetConfig targets="lightning__AppPage">
+            
             <property 
-                label="Header"
-                name="header" 
-                type="String" 
-                default="File Manager"
+                label="Prefix"
+                description="Prefix or record id; Useful in demos"
+                name="prefix" 
+                type="String"
+                default=""
             ></property>
-            <property 
-                label="Icon Name"
-                description="SLDS icon name eg type:icon"
-                name="iconName" 
-                type="String" 
-                default="action:manage_perm_sets"
-            ></property>
-            <property 
-                label="Fields"
-                required="true"
-                description="comma separated field API names"
-                name="fields" 
-                type="String" 
-                default="Title,Category__c,LastModifiedDate"
-            ></property>
-        </targetConfig>
-      
-        <targetConfig targets="lightningCommunity__Default">
-            <property name="recordId" type="String" ></property>
-            <property 
-                label="Header"
-                name="header" 
-                type="String" 
-                default="File Manager"
-            ></property>
-            <property 
-                label="Icon Name"
-                description="SLDS icon name eg type:icon"
-                name="iconName" 
-                type="String" 
-                default="action:manage_perm_sets"
-            ></property>
-            <property 
-                label="Fields"
-                required="true"
-                description="comma separated field API names"
-                name="fields" 
-                type="String" 
-                default="Title,Category__c,LastModifiedDate"
-            ></property>
-            <property 
-                label="Is Upload Only"
-                required="true"
-                description="Show only the upload section"
-                name="isUploadOnly" 
-                type="Boolean"
-                default="false"
-            ></property>
+
         </targetConfig>
 
     </targetConfigs> 
